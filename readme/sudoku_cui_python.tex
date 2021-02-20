@@ -1,0 +1,315 @@
+% latex uft-8
+\documentclass[uplatex,a4paper,11pt,oneside,openany]{jsbook}
+%
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{ascmac}
+\usepackage{setspace}
+\usepackage{here}
+\usepackage{listings,jlisting} %日本語のコメントアウトをする場合jlistingが必要
+%ここからソースコードの表示に関する設定
+\usepackage{xcolor,comment}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\begin{comment}
+\lstset{
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  firstnumber=1000,                % start line enumeration with line 1000
+  frame=single,	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=Octave,                 % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+\end{comment}
+
+%ここからソースコードの表示に関する設定
+
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  numbers=left,
+  frame=single,
+  xleftmargin=\parindent,
+  language=C,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+
+\lstdefinestyle{customjava}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  numbers=left,
+  frame=single,
+  xleftmargin=\parindent,
+  language=java,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+
+\lstdefinestyle{custompython}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  numbers=left,
+  frame=single,
+  xleftmargin=\parindent,
+  language=Python,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+
+\lstdefinestyle{customasm}{
+  belowcaptionskip=1\baselineskip,
+  frame=L,
+  xleftmargin=\parindent,
+  language=[x86masm]Assembler,
+  basicstyle=\footnotesize\ttfamily,
+  commentstyle=\itshape\color{purple!40!black},
+}
+
+\lstset{escapechar=@,style=custompython}
+
+\makeatletter
+\def\ps@plainfoot{%
+  \let\@mkboth\@gobbletwo
+  \let\@oddhead\@empty
+  \def\@oddfoot{\normalfont\hfil-- \thepage\ --\hfil}%
+  \let\@evenhead\@empty
+  \let\@evenfoot\@oddfoot}
+  \let\ps@plain\ps@plainfoot
+\renewcommand{\chapter}{%
+  \if@openright\cleardoublepage\else\clearpage\fi
+  \global\@topnum\z@
+  \secdef\@chapter\@schapter}
+\makeatother
+%
+\newcommand{\maru}[1]{{\ooalign{%
+\hfil\hbox{$\bigcirc$}\hfil\crcr%
+\hfil\hbox{#1}\hfil}}}
+%
+\setlength{\textwidth}{\fullwidth}
+\setlength{\textheight}{40\baselineskip}
+\addtolength{\textheight}{\topskip}
+\setlength{\voffset}{-0.55in}
+%
+\begin{document}
+% START DOCUMENT
+%
+% COVER
+\begin{center}
+  \huge \par
+  \vspace{15mm}
+  \huge \par
+  \vspace{15mm}
+  \LARGE Sudoku = Number Place (CUI - Python) \par
+  \vspace{100mm}
+  \Large \date \par
+  \vspace{15mm}
+  \Large \par
+  \vspace{10mm}
+  \Large S.Matoike \par
+  \vspace{10mm}
+\end{center}
+\thispagestyle{empty}
+\clearpage
+\addtocounter{page}{-1}
+\newpage
+\setcounter{tocdepth}{3}
+%
+\tableofcontents
+%
+\chapter{PythonによるSudoku}
+
+Sudokuは、アメリカのデルマガジンズ社が1979年以降にNumber Placeの名前で販売していた数字パズルを、
+株式会社ニコリの創業者・社長である鍜治真起氏が「数独」と命名し、1986年に月刊ニコリストで紹介した。
+2005年にはSudokuの名で英国で大流行し、世界へ広まった。（英辞郎より）\\
+
+このプログラムは、短い簡易な作りになっているのが魅力的な所です
+
+\subsection{盤面を表示する}
+
+まず、boardリストに盤面を定義し、盤面の印刷を行う関数print\_board()を定義します
+
+\begin{lstlisting}[caption=board,label=sudoku01]
+board = [[5,3,0,0,7,0,0,0,0],\
+         [6,0,0,1,9,5,0,0,0],\
+         [0,9,8,0,0,0,0,6,0],\
+         [8,0,0,0,6,0,0,0,3],\
+         [4,0,0,8,0,3,0,0,1],\
+         [7,0,0,0,2,0,0,0,6],\
+         [0,6,0,0,0,0,2,8,0],\
+         [0,0,0,4,1,9,0,0,5],\
+         [0,0,0,0,8,0,0,7,9]]
+
+def print_board():
+    global board
+    for y in range(9):
+        for x in range(9):
+            print(' ',end='')
+            if x in [2,5]:
+                print(board[y][x], end=' |')
+            else:
+                print(board[y][x], end=' ')
+        if y in [2,5]:
+            print('\n---------|---------|--------')
+        else:
+            print()
+
+\end{lstlisting}
+
+print\_board()をそのまま呼び出して、動作を確認してみます
+
+\begin{verbatim}
+# 動作確認
+print_board()
+
+  5  3  0 | 0  7  0 | 0  0  0
+  6  0  0 | 1  9  5 | 0  0  0
+  0  9  8 | 0  0  0 | 0  6  0
+ ---------|---------|--------
+  8  0  0 | 0  6  0 | 0  0  3
+  4  0  0 | 8  0  3 | 0  0  1
+  7  0  0 | 0  2  0 | 0  0  6
+ ---------|---------|--------
+  0  6  0 | 0  0  0 | 2  8  0
+  0  0  0 | 4  1  9 | 0  0  5
+  0  0  0 | 0  8  0 | 0  7  9
+\end{verbatim}
+
+\subsection{数値を置けるか判定する}
+
+次に、引数yとxで指定されたスロットに、
+第三引数で受け取ったnを置く事ができるか否かを判定する関数possible()を定義します
+
+（1） 縦一列の中に、nと同じ数字があったら置けませんので、Falseを返します
+
+（2） 横一行の中に、nと同じ数字があったら置けませんので、Falseを返します
+
+（3） 3$\times$3の枠の中に、nと同じ数字があったら置けませんので、Falseを返します
+
+上記（1）、（2）、（3）の何れでもないなら、Trueを返します
+
+\begin{lstlisting}[caption=possible,label=sudoku02]
+def possible(y,x,n):
+    global board
+    for i in range(0,9):
+        if board[y][i] == n:
+            return False
+    for i in range(0,9):
+        if board[i][x] == n:
+            return False
+    x0 = (x//3)*3
+    y0 = (y//3)*3
+    for i in range(0,3):
+        for j in range(0,3):
+            if board[y0+i][x0+j] == n:
+                return False
+    return True
+
+\end{lstlisting}
+
+5行5列目(boardリストの0行目や0列目から数え始めるので、引数はx=y=4)の空きスロットに値を指定して、possible()の動作を確認してみます
+
+\begin{verbatim}
+# 動作確認
+print( possible(4,4,4) )
+print( possible(4,4,5) )
+\end{verbatim}
+
+\subsection{問題を解く}
+
+最後に、問題を解く関数solve()を定義します
+
+y行x列目のスロットに着目して、そこが0ならば空きスロットですから、
+そのスロットに、1から10までの数字を順に指定して、possible()を呼びだしてはチェックしていきます
+
+もし、possible()関数がTrueを返したら、それは一つの候補ですので、
+引き続きsolve()を繰り返して空きスロットを埋めていきます
+
+solve()がreturnでNoneを返したときは、選ばれた候補は使えなかったという事ですので、
+盤面のスロットを空（0）に戻しています
+
+全ての空欄が埋まったなら、print\_board()を呼んで結果（答え）を印刷しています
+
+\begin{lstlisting}[caption=solve,label=sudoku03]
+def solve():
+    global board
+    for y in range(9):
+        for x in range(9):
+            if board[y][x] == 0:
+                for n in range(1,10):
+                    if possible(y,x,n):
+                        board[y][x] = n
+                        solve()
+                        board[y][x] = 0
+                return
+    print_board()
+
+\end{lstlisting}
+
+solve()関数の中から、自分自身であるsolve()関数を呼び出す方法、
+再帰呼び出し、を使うことによってプログラムを短く記述できています
+
+\begin{verbatim}
+# 動作確認
+solve()
+
+  5  3  4 | 6  7  8 | 9  1  2
+  6  7  2 | 1  9  5 | 3  4  8
+  1  9  8 | 3  4  2 | 5  6  7
+ ---------|---------|--------
+  8  5  9 | 7  6  1 | 4  2  3
+  4  2  6 | 8  5  3 | 7  9  1
+  7  1  3 | 9  2  4 | 8  5  6
+ ---------|---------|--------
+  9  6  1 | 5  3  7 | 2  8  4
+  2  8  7 | 4  1  9 | 6  3  5
+  3  4  5 | 2  8  6 | 1  7  9
+\end{verbatim}
+
+%\section*{謝辞}
+%\addcontentsline{toc}{chapter}{謝辞}
+%
+\begin{thebibliography}{99}
+  \bibitem{1}
+\end{thebibliography}
+%
+% END DOCUMENT
+\end{document}
+%
